@@ -1,0 +1,22 @@
+# This is just a small scale implementation and for demonstration purpose only.
+# The actual implementation will look different.
+# It will be adapted to requirements of https://github.com/wagtail/news-template/
+# video reference:
+# https://www.youtube.com/watch?v=TnBEVPUsuAw
+# code in this file is based upon:
+# https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configuring-dependabot-version-updates
+# https://docs.github.com/en/code-security/concepts/supply-chain-security/about-the-dependabot-yml-file
+version: 2
+
+updates:
+  # Python dependencies (requirements.txt)
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+
+  # Node dependencies (package.json)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"

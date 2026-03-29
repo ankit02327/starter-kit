@@ -1,4 +1,4 @@
-django>=4.2,<5.2
+django>=4.2,<6.1
 wagtail>=7.0,<7.5
 dj-database-url
 psycopg[binary]

@@ -18,9 +18,17 @@
                 </ul>
             {% endif %}
             {% if field_type == "text" or field_type == "email" %}
+
+                {% if field.label %}
+                    <label for="{{ field.html_name }}" class="block text-sm mb-1">
+                        {{ field.label }}
+                    </label>
+                {% endif %}
+
                 <input 
                     class="text-base placeholder:text-base p-3.5 border border-mackerel-200 bg-white dark:bg-mackerel-100 dark:text-white placeholder:text-mackerel-400 dark:placeholder:text-white w-full rounded-[30px] min-h-[50px]"
                     type="text"
+                    id="{{ field.html_name }}"
                     name="{{ field.name }}"
                     {% if field.value %}
                         value="{{ field.value }}"

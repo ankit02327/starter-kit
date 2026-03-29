@@ -15,7 +15,6 @@ from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.fields import RichTextField
 from wagtail.models import Orderable, Page
 from wagtail.rich_text import expand_db_html
-from wagtail.snippets.models import register_snippet
 
 from {{ project_name }}.images.models import CustomImage
 from {{ project_name }}.utils.cache import get_default_cache_control_decorator
@@ -94,7 +93,6 @@ class ListingFields(models.Model):
     ]
 
 
-@register_snippet
 class AuthorSnippet(models.Model):
     title = models.CharField(blank=False, max_length=255)
     image = models.ForeignKey(
@@ -109,7 +107,6 @@ class AuthorSnippet(models.Model):
         return self.title
 
 
-@register_snippet
 class ArticleTopic(models.Model):
     title = models.CharField(blank=False, max_length=255)
     slug = models.SlugField(blank=False, max_length=255)
@@ -161,7 +158,6 @@ class ArticleTopic(models.Model):
         return title
 
 
-@register_snippet
 class Statistic(models.Model):
     statistic = models.CharField(blank=False, max_length=12)
     description = models.CharField(blank=False, max_length=225)

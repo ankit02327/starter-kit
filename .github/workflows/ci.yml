@@ -1,0 +1,56 @@
+# This is just a small scale implementation and for demonstration purpose only.
+# The actual implementation will look different.
+# It will be adapted to requirements of https://github.com/wagtail/news-template/
+# code in this file is based upon:
+# https://github.com/wagtail/bakerydemo/blob/main/.github/workflows/ci.yml
+
+name: CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-server:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: "requirements.txt"
+
+      - run: pip install -r requirements.txt
+      - run: pip install ruff
+
+      # backend lint
+      - run: ruff check .
+
+  test-server:
+    runs-on: ubuntu-latest
+
+    env:
+      # using dev settings for now, will introduce a proper ci.py later
+      DJANGO_SETTINGS_MODULE: project_name.settings.dev
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: "requirements.txt"
+
+      - run: pip install -r requirements.txt
+
+      - run: python manage.py check
+      - run: python manage.py makemigrations --check --noinput
+      - run: python manage.py test

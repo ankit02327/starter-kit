@@ -5,7 +5,7 @@ from django.forms.utils import ErrorList
 from wagtail import blocks
 from wagtail.blocks.struct_block import StructBlockValidationError
 from wagtail.documents.blocks import DocumentChooserBlock
-from wagtail.images.blocks import ImageBlock, ImageChooserBlock
+from wagtail.images.blocks import ImageBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 
 from {{ project_name }}.utils.struct_values import CardStructValue, LinkStructValue
@@ -30,17 +30,24 @@ class AccordionBlock(blocks.StructBlock):
 
 
 class CaptionedImageBlock(blocks.StructBlock):
-    image = ImageChooserBlock()
-    image_alt_text = blocks.CharBlock(
+    image = ImageBlock(
+        required=True,
+        help_text="Image with contextual alt text support.",
+    )
+    alt_override = blocks.CharBlock(
         required=False,
-        help_text="If left blank, the image's global alt text will be used.",
+        help_text="Override alt text for this usage (optional).",
+    )
+    is_decorative = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Mark as decorative (no alt text).",
     )
     caption = blocks.CharBlock(required=False)
 
     class Meta:
         icon = "image"
         template = "components/streamfield/blocks/image_block.html"
-
 
 class InternalLinkBlock(blocks.StructBlock):
     page = blocks.PageChooserBlock()

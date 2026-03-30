@@ -3,7 +3,13 @@
 
 <div class="pb-10 md:pb-20 flex justify-center">
     <div>
-        {% image value.image width-640 %}
+        {% image value.image width-640 as img %}
+
+        <img src="{{ img.url }}"
+             width="{{ img.width }}"
+             height="{{ img.height }}"
+             alt="{% if value.is_decorative %}{% else %}{{ value.alt_override|default:img.alt }}{% endif %}">
+
         {% if value.caption %}
             <p class="mt-4">{{ value.caption }}</p>
         {% endif %}

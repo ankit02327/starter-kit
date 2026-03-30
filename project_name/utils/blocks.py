@@ -31,7 +31,7 @@ class AccordionBlock(blocks.StructBlock):
 
 class CaptionedImageBlock(blocks.StructBlock):
     image = ImageBlock(
-        required=True,
+        required=False,
         help_text="Image with contextual alt text support.",
     )
     alt_override = blocks.CharBlock(

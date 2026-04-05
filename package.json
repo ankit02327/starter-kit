@@ -13,7 +13,7 @@
     "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^6.10.0",
     "cssnano": "^6.0.3",
-    "mini-css-extract-plugin": "^2.8.0",
+    "mini-css-extract-plugin": "^2.10.2",
     "postcss-custom-properties": "^13.3.5",
     "postcss-loader": "^8.1.0",
     "sass": "^1.71.0",

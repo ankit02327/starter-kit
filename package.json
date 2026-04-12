@@ -8,7 +8,7 @@
     "start:reload": "webpack-dev-server"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.17",
+    "autoprefixer": "^10.4.27",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^6.10.0",
